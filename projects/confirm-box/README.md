@@ -1,24 +1,22 @@
 # ConfirmBox
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
+Its displays a beautiful confirm box with minimal code.
 
-## Code scaffolding
+# How to install
 
-Run `ng generate component component-name --project confirm-box` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project confirm-box`.
-> Note: Don't forget to add `--project confirm-box` or else it will be added to the default project in your `angular.json` file. 
+`npm install bootstrap @tgawhale/confirm-box`
 
-## Build
+# Steps
 
-Run `ng build confirm-box` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Create a ConfirmBoxService object in constructor
+2. Use method `show(title,description,(val)=>{ //your code after clicked on confirmed }`
 
-## Publishing
+# Example
 
-After building your library with `ng build confirm-box`, go to the dist folder `cd dist/confirm-box` and run `npm publish`.
+`constructor(private cbService: ConfirmBoxService) {}`
 
-## Running unit tests
-
-Run `ng test confirm-box` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+ `openConfirmBox() {
+    this.cbService.show('The item will be deleted', 'The current selected item will be deleted. The process is irreversible.', (val) => {
+      alert(val);
+    });
+  }`
