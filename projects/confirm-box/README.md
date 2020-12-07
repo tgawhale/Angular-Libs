@@ -2,6 +2,8 @@
 
 Its displays a beautiful confirm box with minimal code.
 
+It's developed using Angular 10 & requires bootstrap.
+
 # How to install
 
 `npm install bootstrap @tgawhale/confirm-box`
