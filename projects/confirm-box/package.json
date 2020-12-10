@@ -1,6 +1,6 @@
 {
   "name": "@tgawhale/confirm-box",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "peerDependencies": {
     "@angular/common": "^10.2.0",
     "@angular/core": "^10.2.0"

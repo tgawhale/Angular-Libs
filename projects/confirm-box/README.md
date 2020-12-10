@@ -4,6 +4,8 @@ Its displays a beautiful confirm box with minimal code.
 
 It's developed using Angular 10
 
+![alt text](https://github.com/tgawhale/Angular-Libs/blob/main/src/assets/confirm-box.png?raw=true)
+
 # How to install
 
 `npm install @tgawhale/confirm-box`
