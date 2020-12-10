@@ -9,10 +9,13 @@ import { ConfirmBoxService } from 'confirm-box';
 export class AppComponent {
   title = 'my-libs';
   constructor(private cbService: ConfirmBoxService) {}
-
   open() {
-    this.cbService.show('Hi', 'Hello', (val) => {
-      alert(val);
-    });
+    this.cbService.show(
+      'The item will be deleted',
+      'The current selected item will be deleted. The process is irreversible.',
+      (val) => {
+        alert(val);
+      }
+    );
   }
 }

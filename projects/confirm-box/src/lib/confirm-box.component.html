@@ -8,16 +8,23 @@
   [ngClass]="{ show: cbService.isOpened }"
 >
   <div class="modal-dialog">
-    <div class="modal-content border-0" style="background: var(--bg2)">
-      <div class="modal-body p-0 bg-light">
+    <div class="modal-content border-0">
+      <div class="modal-body">
         <div class="row">
           <div class="col-12">
             <div class="d-flex card-body">
-              <span
-                class="material-icons m-auto rounded-circle p-2"
-                style="font-size: 4rem; border: 2px solid; color: #f44336"
-                >priority_high</span
+              <svg
+                class="m-auto rounded-circle"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="#f44336"
+                width="4rem"
+                height="4rem"
               >
+                <path d="M0 0h24v24H0z" fill="none" />
+                <circle cx="12" cy="19" r="2" />
+                <path d="M10 3h4v12h-4z" />
+              </svg>
             </div>
           </div>
           <div class="col-12">
@@ -35,7 +42,7 @@
               </button>
               <button
                 class="btn ml-1"
-                style="background: #f44336; color: var(--light)"
+                style="background: #f44336; color: #ffffff"
                 (click)="cbService.userFuncAfterConfirm(true); cbService.hide()"
               >
                 Confirm

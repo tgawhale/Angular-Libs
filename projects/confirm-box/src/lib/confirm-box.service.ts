@@ -10,7 +10,7 @@ export class ConfirmBoxService {
   userFuncAfterConfirm: (a: boolean) => void;
   constructor() {}
 
-  show(title: string, description: string, onConfirmed: (a: boolean) => void) {
+  show(title: string, description: string, onConfirmed: (isConfirmed: boolean) => void) {
     this.title = title;
     this.description = description;
     this.isOpened = true;

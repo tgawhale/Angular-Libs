@@ -1,6 +1,6 @@
 {
   "name": "@tgawhale/confirm-box",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "peerDependencies": {
     "@angular/common": "^10.2.0",
     "@angular/core": "^10.2.0"
@@ -8,7 +8,7 @@
   "dependencies": {
     "tslib": "^2.0.0"
   },
-  "description": "Its displays a beautiful confirm box with minimal code.",
+  "description": "Its displays a clean confirm box with minimal code.",
   "main": "karma.conf.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,7 +18,10 @@
     "url": "https://github.com/tgawhale/Angular-Libs/tree/main/projects/confirm-box"
   },
   "keywords": [
+    "Angular",
     "confirm",
+    "confirm dialog",
+    "confirm box",
     "box",
     "bootstrap"
   ],
