@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+.box-sh1 {
+  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%),
+    0 1px 5px 0 rgb(0 0 0 / 12%);
+}
+
+.c-p {
+  cursor: pointer;
+}
+
+th {
+  top: 0 !important;
+  position: sticky !important;
+}
+
+.table td,
+.table th {
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+  vertical-align: inherit;
+}
+
+.table {
+  font-size: 14px !important;
+}
+
+.table-striped > tbody > tr:nth-child(2n + 1) > td,
+.table-striped > tbody > tr:nth-child(2n + 1) > th {
+  background-color: var(--light);
+}
+
+.table thead th {
+  border-bottom: 0 !important;
+}
+
+.sort-indicators {
+  font-size: 16px;
+  vertical-align: text-top;
+  color: #f44336;
+}
+
+.tbody-icons {
+  font-size: 20px;
+  vertical-align: bottom;
+}
+
+.table-menu-icons {
+  vertical-align: bottom;
+}
+
+.edit:hover {
+  color: var(--warning) !important;
+}
+
+.delete:hover {
+  color: var(--danger) !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.dropdown-menu {
+  max-height: 360px;
+  overflow: auto;
+}
+
+.dropdown-item {
+  padding: 0.25rem 0.75rem;
+  cursor: pointer;
+}
+
+.dropdown-item > .material-icons {
+  vertical-align: middle;
+  font-size: 20px;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  color: inherit;
+  text-decoration: none;
+  background-color: inherit;
+}

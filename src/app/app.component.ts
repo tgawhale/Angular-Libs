@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { ConfirmBoxService } from 'confirm-box';
-
+import { SampleData, DATA } from './model';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,14 +7,10 @@ import { ConfirmBoxService } from 'confirm-box';
 })
 export class AppComponent {
   title = 'my-libs';
-  constructor(private cbService: ConfirmBoxService) {}
-  open() {
-    this.cbService.show(
-      'The item will be deleted',
-      'The current selected item will be deleted. The process is irreversible.',
-      (val) => {
-        alert(val);
-      }
-    );
+  data: SampleData[] = DATA;
+  constructor() {}
+
+  recordResponse(event) {
+    console.log(event);
   }
 }

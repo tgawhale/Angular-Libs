@@ -23,6 +23,14 @@
       "confirm-box": [
         "dist/confirm-box/confirm-box",
         "dist/confirm-box"
+      ],
+      "login-form": [
+        "dist/login-form/login-form",
+        "dist/login-form"
+      ],
+      "data-tables": [
+        "dist/data-tables/data-tables",
+        "dist/data-tables"
       ]
     }
   }

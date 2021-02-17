@@ -1,0 +1,108 @@
+<div class="card">
+  <div class="card-body">
+    <h4 class="font-weight-bold m-0">
+      CG Employee List <span class="text-primary">[{{ data.length }}]</span>
+      <div class="btn-group float-right">
+        <button class="btn pb-0">
+          <span class="material-icons table-menu-icons">search</span>
+        </button>
+        <button class="btn pb-0">
+          <span class="material-icons table-menu-icons">download</span>
+        </button>
+        <div
+          class="dropdown"
+          (mouseover)="view_col.style.display = 'block'"
+          (mouseout)="view_col.style.display = 'none'"
+        >
+          <button class="btn pb-0">
+            <span class="material-icons table-menu-icons">view_column</span>
+          </button>
+          <div
+            class="dropdown-menu dropdown-menu-lg-right box-sh1 bg-white"
+            #view_col
+          >
+            <h6 class="font-weight-bold text-center">Show Columns</h6>
+            <a
+              class="dropdown-item"
+              *ngFor="let k of keys"
+              (click)="k.isVisible = !k.isVisible"
+            >
+              <span
+                class="material-icons"
+                [ngClass]="{ 'text-primary': k.isVisible }"
+                >{{
+                  k.isVisible ? "check_box" : "check_box_outline_blank"
+                }}</span
+              >
+              {{ k.key }}
+            </a>
+          </div>
+        </div>
+        <button class="btn pb-0">
+          <span class="material-icons table-menu-icons">filter_list</span>
+        </button>
+      </div>
+    </h4>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped m-0">
+      <thead>
+        <tr>
+          <th>
+            <span class="material-icons tbody-icons">
+              check_box_outline_blank
+            </span>
+          </th>
+          <th>Action</th>
+          <th
+            *ngFor="let k of keys"
+            (click)="sortTable(k.key)"
+            class="c-p"
+            [hidden]="!k.isVisible"
+          >
+            {{ k.key }}
+            <span
+              class="material-icons sort-indicators"
+              [hidden]="k.isAsc == null"
+              >{{ k.isAsc ? "north" : "south" }}</span
+            >
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let d of data | page: pg.startIndex:pg.endIndex;
+            let i = index
+          "
+        >
+          <td>
+            <span class="material-icons tbody-icons">
+              check_box_outline_blank
+            </span>
+          </td>
+
+          <td>
+            <div class="btn-group">
+              <button class="btn p-0 pr-1" (click)="sendResponse('edit', [i])">
+                <span class="material-icons tbody-icons text-secondary edit">
+                  edit
+                </span>
+              </button>
+              <button
+                class="btn p-0 pl-1"
+                (click)="sendResponse('delete', [i])"
+              >
+                <span class="material-icons tbody-icons text-secondary delete">
+                  delete
+                </span>
+              </button>
+            </div>
+          </td>
+          <td *ngFor="let k of keys" [hidden]="!k.isVisible">{{ d[k.key] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <lib-paginate [paginate]="pg" (emit)="pg = $event"></lib-paginate>
+</div>
