@@ -1,0 +1,111 @@
+<h4 class="text-center">
+  <a href="#" (click)="isResult = !isResult">{{
+    isResult ? "Admin View" : "YP View"
+  }}</a>
+</h4>
+<div class="card mt-3" *ngIf="!isResult">
+  <div class="card-body row">
+    <div class="col-6">
+      <h4 class="font-weight-bold m-0">
+        Tushar Tasks <small class="text-primary">(22-Feb-2020)</small>
+      </h4>
+    </div>
+
+    <div class="col-6">
+      <div class="input-group">
+        <select name="t" class="form-control bg-light" #val>
+          <option *ngFor="let tl of taskList" [value]="tl">{{ tl }}</option>
+        </select>
+        <div class="input-group-append">
+          <button class="btn btn-primary" (click)="addTask(val.value)">
+            Add Task
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Task Name</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tt of taskTrackers; let i = index">
+          <td>{{ i + 1 }}.</td>
+          <td>{{ tt.name }}</td>
+          <td>
+            <button
+              class="btn btn-info"
+              *ngIf="tt.sTime == null && tt.eTime == null"
+              (click)="startTask(i)"
+            >
+              start
+            </button>
+            <button
+              class="btn btn-danger"
+              *ngIf="tt.sTime != null && tt.eTime == null"
+              (click)="endTask(i)"
+            >
+              End
+            </button>
+            <h6
+              class="text-primary"
+              *ngIf="tt.sTime != null && tt.eTime != null"
+            >
+              {{ tt.name }} Completed
+            </h6>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card mt-3" *ngIf="isResult">
+  <div class="card-body">
+    <div class="row justify-content-end">
+      <div class="col-6">
+        <div class="input-group">
+          <input
+            placeholder="Enter Employee Id"
+            class="form-control bg-light"
+          />
+          <input placeholder="Selec Date" class="form-control bg-light" />
+          <div class="input-group-append">
+            <button class="btn btn-success">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 mb-3">
+        <h5 class="m-0 text-weight-bold">
+          Tushar Gawhale <small class="text-primary">(22-Feb-2020)</small>
+        </h5>
+      </div>
+    </div>
+
+    <table class="table">
+      <thead>
+        <th>#</th>
+        <th>Task Name</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Total Time</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tt of taskTrackers; let i = index">
+          <td>{{ i + 1 }}.</td>
+          <td>{{ tt.name }}</td>
+          <td>{{ tt.sTime | date: "mediumTime" }}</td>
+          <td>{{ tt.eTime | date: "mediumTime" }}</td>
+          <td>{{ tt.tTime | timer }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

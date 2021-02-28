@@ -1,0 +1,48 @@
+<div
+  class="dropdown"
+  (click)="view_col.style.display = 'block'"
+  (dblclick)="view_col.style.display = 'none'"
+>
+  <button class="btn btn-light mr-2" style="font-size: 14px">
+    <span class="material-icons" style="font-size: 20px; vertical-align: bottom"
+      >hide_source</span
+    >
+    Hide fields
+  </button>
+  <div
+    class="dropdown-menu box-sh1 bg-white pt-0"
+    #view_col
+    style="width: 240px; background-clip: initial"
+  >
+    <a class="dropdown-item bg-white" style="position: sticky; top: 0">
+      <div class="btn-group w-100">
+        <button
+          class="btn btn-light m-2 border rounded"
+          style="font-size: 12px; padding: 0.25rem 0.75rem"
+        >
+          Hide all
+        </button>
+        <button
+          class="btn btn-light m-2 border rounded"
+          style="font-size: 12px; padding: 0.25rem 0.75rem"
+        >
+          Show all
+        </button>
+      </div></a
+    >
+    <a
+      class="dropdown-item"
+      style="font-size: 14px"
+      *ngFor="let k of keys"
+      (click)="k.isVisible = !k.isVisible"
+    >
+      <span
+        class="material-icons"
+        style="font-size: 16px"
+        [ngClass]="{ 'text-primary': k.isVisible }"
+        >{{ k.isVisible ? "check_box" : "check_box_outline_blank" }}</span
+      >
+      {{ k.key }}
+    </a>
+  </div>
+</div>

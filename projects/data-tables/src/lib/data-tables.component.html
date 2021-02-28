@@ -1,52 +1,51 @@
 <div class="card">
-  <div class="card-body">
+  <div class="card-body border-bottom">
     <h4 class="font-weight-bold m-0">
       CG Employee List <span class="text-primary">[{{ data.length }}]</span>
-      <div class="btn-group float-right">
-        <button class="btn pb-0">
-          <span class="material-icons table-menu-icons">search</span>
-        </button>
-        <button class="btn pb-0">
-          <span class="material-icons table-menu-icons">download</span>
-        </button>
-        <div
-          class="dropdown"
-          (mouseover)="view_col.style.display = 'block'"
-          (mouseout)="view_col.style.display = 'none'"
-        >
-          <button class="btn pb-0">
-            <span class="material-icons table-menu-icons">view_column</span>
-          </button>
-          <div
-            class="dropdown-menu dropdown-menu-lg-right box-sh1 bg-white"
-            #view_col
-          >
-            <h6 class="font-weight-bold text-center">Show Columns</h6>
-            <a
-              class="dropdown-item"
-              *ngFor="let k of keys"
-              (click)="k.isVisible = !k.isVisible"
-            >
-              <span
-                class="material-icons"
-                [ngClass]="{ 'text-primary': k.isVisible }"
-                >{{
-                  k.isVisible ? "check_box" : "check_box_outline_blank"
-                }}</span
-              >
-              {{ k.key }}
-            </a>
-          </div>
-        </div>
-        <button class="btn pb-0">
-          <span class="material-icons table-menu-icons">filter_list</span>
-        </button>
-      </div>
+      <div class="btn-group float-right"></div>
     </h4>
   </div>
+  <div class="card-body p-2 bg-light">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex">
+          <lib-hide-columns-tool [keys]="keys"></lib-hide-columns-tool>
+          <lib-filter-tool [keys]="keys"></lib-filter-tool>
+          <button class="btn btn-light mr-2" style="font-size: 14px">
+            <span
+              class="material-icons"
+              style="font-size: 20px; vertical-align: bottom"
+              >storage</span
+            >
+            Group
+          </button>
+          <lib-sort-tool [keys]="keys"></lib-sort-tool>
+          <button class="btn btn-light mr-2" style="font-size: 14px">
+            <span
+              class="material-icons"
+              style="font-size: 20px; vertical-align: bottom"
+              >height</span
+            >
+            Row Height
+          </button>
+          <button
+            class="btn btn-light ml-auto"
+            style="font-size: 14px"
+            (click)="isSearchOn = !isSearchOn"
+          >
+            <span
+              class="material-icons"
+              style="font-size: 20px; vertical-align: bottom"
+              >search</span
+            >
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="table-responsive">
-    <table class="table table-striped m-0">
-      <thead>
+    <table class="table table-hover table-bordered m-0">
+      <thead style="background: #f5f5f5">
         <tr>
           <th>
             <span class="material-icons tbody-icons">
@@ -56,23 +55,31 @@
           <th>Action</th>
           <th
             *ngFor="let k of keys"
-            (click)="sortTable(k.key)"
-            class="c-p"
             [hidden]="!k.isVisible"
+            style="padding: 0.5rem !important"
           >
-            {{ k.key }}
-            <span
-              class="material-icons sort-indicators"
-              [hidden]="k.isAsc == null"
-              >{{ k.isAsc ? "north" : "south" }}</span
-            >
+            <div class="d-flex">
+              <span> {{ k.key }}</span>
+              <span
+                class="material-icons ml-auto c-p"
+                style="vertical-align: bottom; font-size: 20px; opacity: 0.25"
+                >arrow_drop_down</span
+              >
+            </div>
           </th>
         </tr>
       </thead>
       <tbody>
+        <tr *ngIf="isSearchOn">
+          <td></td>
+          <td></td>
+          <td *ngFor="let k of keys" [hidden]="!k.isVisible">
+            <input class="form-control" type="search" style="font-size: 14px" />
+          </td>
+        </tr>
         <tr
           *ngFor="
-            let d of data | page: pg.startIndex:pg.endIndex;
+            let d of data | slice: pg.startIndex:pg.endIndex;
             let i = index
           "
         >

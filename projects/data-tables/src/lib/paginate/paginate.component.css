@@ -25,3 +25,8 @@ select {
 .page-icon-btn.disabled {
   pointer-events: none;
 }
+
+.page-icon-btn:hover {
+  color: var(--primary);
+  background: #f0f0f0;
+}

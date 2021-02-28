@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-body" *ngIf="!isSubmitted">
+    <h5>Q. {{ currIndex + 1 }} ) Click on the lines which contains errors</h5>
+    <div class="col-12">
+      <div class="card card-body bg-light card-body bg-light pl-0 pr-0">
+        <pre
+          class="m-0 c-p"
+          *ngFor="let c of questions[currIndex].code; let i = index"
+          [ngClass]="{ 'bg-warning': answers[i] }"
+          (click)="toggleAnswers(i)"
+          >{{ c }}</pre
+        >
+      </div>
+    </div>
+    <div class="col-12">
+      <button
+        class="btn btn-success"
+        *ngIf="currIndex != this.questions.length - 1"
+        (click)="nextQues()"
+      >
+        Next
+      </button>
+      <button
+        class="btn btn-warning"
+        *ngIf="currIndex == this.questions.length - 1"
+        (click)="submit()"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+
+  <div class="card-body text-center" *ngIf="isSubmitted">
+    <h3>Your Score is</h3>
+    <h1>{{ score - invalid }}</h1>
+    <h6>Right answers : {{ score }}</h6>
+    <h6>Wrong answers : {{ invalid }}</h6>
+    <a (click)="reload()" href="#">Reload</a>
+  </div>
+</div>

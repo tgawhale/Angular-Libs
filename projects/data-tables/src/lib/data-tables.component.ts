@@ -9,9 +9,13 @@ import { Paginate, ResponseModel, TableKeys } from './model';
 export class DataTablesComponent implements OnInit {
   @Input() data: any[] = [];
   @Output() response = new EventEmitter();
+
   keys: TableKeys[] = [];
+
   pg: Paginate = new Paginate();
 
+  isSearchOn: boolean = false;
+  searchText: string = '';
   constructor() {}
 
   ngOnInit(): void {
@@ -64,4 +68,6 @@ export class DataTablesComponent implements OnInit {
     response.indexes = value;
     this.response.emit(response);
   }
+
+  searchLogic() {}
 }

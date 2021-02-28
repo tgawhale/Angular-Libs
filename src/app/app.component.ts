@@ -13,4 +13,8 @@ export class AppComponent {
   recordResponse(event) {
     console.log(event);
   }
+
+  logg(val: string) {
+    console.log(val.split('\n'));
+  }
 }

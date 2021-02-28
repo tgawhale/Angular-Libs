@@ -1,0 +1,171 @@
+<div
+  class="dropdown"
+  (click)="view_col.style.display = 'block'"
+  (dblclick)="view_col.style.display = 'none'"
+>
+  <button class="btn btn-light mr-2" style="font-size: 14px">
+    <span
+      class="material-icons"
+      style="font-size: 20px; vertical-align: bottom; transform: rotateZ(90deg)"
+      >sync_alt</span
+    >
+    Sort
+  </button>
+  <div
+    class="dropdown-menu box-sh1 bg-white"
+    #view_col
+    style="width: 600px; background-clip: initial"
+  >
+    <div class="card-body">
+      <table class="table table-borderless mb-0">
+        <tbody>
+          <tr>
+            <td
+              style="
+                border-bottom-color: transparent;
+                border-top-color: transparent;
+                border-left-color: transparent;
+              "
+            >
+              <span
+                class="material-icons"
+                style="font-size: 16px; vertical-align: sub"
+                >close</span
+              >
+            </td>
+            <td class="text-center">
+              <span style="font-size: 12px">Sort by</span>
+            </td>
+            <td>
+              <select class="form-control">
+                <option selected *ngFor="let k of keys">{{ k.key }}</option>
+              </select>
+            </td>
+            <td>
+              <span style="font-size: 12px">from</span>
+            </td>
+            <td>
+              <div
+                class="btn-group btn-group-toggle w-100 rounded"
+                style="background: #f0f0f0"
+                data-toggle="buttons"
+              >
+                <label
+                  class="btn btn-secondary m-2 rounded"
+                  style="font-size: 12px; font-weight: bold; padding: 0.15rem"
+                >
+                  <input type="radio" name="options" id="option1" checked />
+                  A
+                  <span
+                    class="material-icons ml-2 mr-2"
+                    style="vertical-align: text-bottom; font-size: 16px"
+                    >east</span
+                  >
+                  Z
+                </label>
+                <label
+                  class="btn m-2 rounded"
+                  style="font-size: 12px; font-weight: bold; padding: 0.15rem"
+                >
+                  <input type="radio" name="options" id="option2" /> Z
+                  <span
+                    class="material-icons ml-2 mr-2"
+                    style="vertical-align: text-bottom; font-size: 16px"
+                    >east</span
+                  >
+                  A
+                </label>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td
+              style="
+                border-bottom-color: transparent;
+                border-top-color: transparent;
+                border-left-color: transparent;
+              "
+            >
+              <span
+                class="material-icons"
+                style="font-size: 16px; vertical-align: sub"
+                >close</span
+              >
+            </td>
+            <td class="text-center">
+              <span style="font-size: 12px">then by</span>
+            </td>
+            <td>
+              <select class="form-control">
+                <option selected *ngFor="let k of keys">{{ k.key }}</option>
+              </select>
+            </td>
+            <td>
+              <span style="font-size: 12px">from</span>
+            </td>
+            <td>
+              <div
+                class="btn-group btn-group-toggle w-100 rounded"
+                style="background: #f0f0f0"
+                data-toggle="buttons"
+              >
+                <label
+                  class="btn btn-secondary m-2 rounded"
+                  style="font-size: 12px; font-weight: bold; padding: 0.15rem"
+                >
+                  <input type="radio" name="options" id="option1" checked />
+                  1
+                  <span
+                    class="material-icons ml-2 mr-2"
+                    style="vertical-align: text-bottom; font-size: 16px"
+                    >east</span
+                  >
+                  9
+                </label>
+                <label
+                  class="btn m-2 rounded"
+                  style="font-size: 12px; font-weight: bold; padding: 0.15rem"
+                >
+                  <input type="radio" name="options" id="option2" /> 9
+                  <span
+                    class="material-icons ml-2 mr-2"
+                    style="vertical-align: text-bottom; font-size: 16px"
+                    >east</span
+                  >
+                  1
+                </label>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <a class="dropdown-item bg-white">
+      <div class="d-flex">
+        <select class="form-control col-4" style="font-weight: bold">
+          <option selected disabled style="font-weight: bold">
+            Pick another field to sort by
+          </option>
+          <option *ngFor="let k of keys" [value]="k.key">
+            {{ k.key }}
+          </option>
+        </select>
+        <div class="btn-group ml-auto">
+          <button
+            class="btn rounded mr-2 text-dark"
+            style="font-size: 12px; padding: 0.25rem 0.5rem"
+            (click)="view_col.style.display = 'none'"
+          >
+            Cancel
+          </button>
+          <button
+            class="btn btn-outline-primary rounded border-0"
+            style="font-size: 12px; padding: 0.25rem 0.5rem"
+          >
+            Apply
+          </button>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

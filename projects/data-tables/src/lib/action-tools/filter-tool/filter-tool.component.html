@@ -1,0 +1,119 @@
+<div
+  class="dropdown"
+  (click)="view_col.style.display = 'block'"
+  (dblclick)="view_col.style.display = 'none'"
+>
+  <button class="btn btn-light mr-2" style="font-size: 14px">
+    <span class="material-icons" style="font-size: 20px; vertical-align: bottom"
+      >filter_alt</span
+    >
+    Filter
+  </button>
+  <div
+    class="dropdown-menu box-sh1 bg-white"
+    #view_col
+    style="width: 600px; background-clip: initial"
+  >
+    <div class="card-body">
+      <table class="table table-borderless mb-0">
+        <tbody>
+          <tr>
+            <td
+              style="
+                border-bottom-color: transparent;
+                border-top-color: transparent;
+                border-left-color: transparent;
+              "
+            >
+              <span
+                class="material-icons"
+                style="font-size: 16px; vertical-align: sub"
+                >close</span
+              >
+            </td>
+            <td class="text-center">
+              <span style="font-size: 12px">Where</span>
+            </td>
+            <td>
+              <select class="form-control">
+                <option selected *ngFor="let k of keys">{{ k.key }}</option>
+              </select>
+            </td>
+            <td>
+              <select class="form-control">
+                <option selected *ngFor="let f of fil">{{ f }}</option>
+              </select>
+            </td>
+            <td>
+              <input class="form-control bg-light" />
+            </td>
+          </tr>
+          <tr>
+            <td
+              style="
+                border-bottom-color: transparent;
+                border-top-color: transparent;
+                border-left-color: transparent;
+              "
+            >
+              <span
+                class="material-icons"
+                style="font-size: 16px; vertical-align: sub"
+                >close</span
+              >
+            </td>
+            <td>
+              <select class="form-control">
+                <option selected>And</option>
+                <option>Or</option>
+              </select>
+            </td>
+            <td>
+              <select class="form-control">
+                <option selected *ngFor="let k of keys">{{ k.key }}</option>
+              </select>
+            </td>
+            <td>
+              <select class="form-control">
+                <option selected *ngFor="let f of fil">{{ f }}</option>
+              </select>
+            </td>
+            <td>
+              <input class="form-control bg-light" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <a class="dropdown-item bg-white">
+      <div class="d-flex">
+        <button
+          class="btn btn-light border rounded"
+          style="font-size: 12px; padding: 0.25rem 0.5rem"
+        >
+          <span
+            class="material-icons"
+            style="font-size: 16px; vertical-align: sub"
+            >add</span
+          >
+          Add Filter
+        </button>
+        <div class="btn-group ml-auto">
+          <button
+            class="btn rounded mr-2 text-dark"
+            style="font-size: 12px; padding: 0.25rem 0.5rem"
+            (click)="view_col.style.display = 'none'"
+          >
+            Cancel
+          </button>
+          <button
+            class="btn btn-outline-primary rounded border-0"
+            style="font-size: 12px; padding: 0.25rem 0.5rem"
+          >
+            Apply
+          </button>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
