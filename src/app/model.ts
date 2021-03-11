@@ -1,6 +1,6 @@
 export class SampleData {
   empId: number;
-  name: string;
+  name?: string;
   email: string;
   gender: string;
   buJoining: string;
@@ -56,7 +56,6 @@ export const DATA: SampleData[] = [
   },
   {
     empId: 69956,
-    name: 'Sandip Majumdar',
     email: 'sandip.majumder@infosys.com',
     gender: 'M',
     buJoining: '09-Dec-16',

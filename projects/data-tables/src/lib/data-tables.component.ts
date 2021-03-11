@@ -16,6 +16,8 @@ export class DataTablesComponent implements OnInit {
 
   isSearchOn: boolean = false;
   searchText: string = '';
+
+  isRowsExpanded: boolean = false;
   constructor() {}
 
   ngOnInit(): void {

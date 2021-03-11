@@ -8,13 +8,10 @@ import { SampleData, DATA } from './model';
 export class AppComponent {
   title = 'my-libs';
   data: SampleData[] = DATA;
+  keys: string[] = Object.keys(DATA[0]);
   constructor() {}
 
   recordResponse(event) {
     console.log(event);
-  }
-
-  logg(val: string) {
-    console.log(val.split('\n'));
   }
 }

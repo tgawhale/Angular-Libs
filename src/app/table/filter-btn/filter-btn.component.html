@@ -1,0 +1,89 @@
+<div class="dropdown">
+  <button class="btn" (click)="view_col.style.display = 'block'">
+    <ng-content></ng-content>
+  </button>
+  <div id="dropdown-menu" class="dropdown-menu" #view_col>
+    <div class="card-body">
+      <table class="table table-borderless mb-0">
+        <tbody>
+          <tr *ngFor="let fo of filterOptions; let i = index">
+            <td>
+              <span class="c-p" (click)="deleteFilter(i)">&#10005;</span>
+            </td>
+            <td>
+              <span *ngIf="fo.clause == 'Where'">Where</span>
+              <select
+                class="form-control"
+                [(ngModel)]="fo.clause"
+                name="clause"
+                *ngIf="i != 0"
+              >
+                <option selected value="and">And</option>
+                <option value="or">Or</option>
+              </select>
+            </td>
+            <td>
+              <select
+                class="form-control"
+                [(ngModel)]="fo.key"
+                name="key"
+                (change)="changeDataType(i, fo.key)"
+              >
+                <option selected *ngFor="let k of keys" [value]="k.key">
+                  {{ k.key }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <select
+                class="form-control"
+                *ngIf="fo.dataType == 'number'"
+                [(ngModel)]="fo.conditon"
+              >
+                <option selected *ngFor="let n of numberCondition" [value]="n">
+                  {{ n }}
+                </option>
+              </select>
+              <select
+                class="form-control"
+                *ngIf="fo.dataType == 'string'"
+                [(ngModel)]="fo.conditon"
+              >
+                <option selected *ngFor="let s of stringCondition" [value]="s">
+                  {{ s }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <input
+                class="form-control"
+                [(ngModel)]="fo.value"
+                name="val"
+                *ngIf="!fo.conditon.includes('empty')"
+                required
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="d-flex action-btn">
+      <button class="btn" (click)="addFilter()">
+        <span class="material-icons v-b">add</span>
+        Add Filter
+      </button>
+      <div class="btn-group ml-auto">
+        <button class="btn mr-2" (click)="view_col.style.display = 'none'">
+          Cancel
+        </button>
+        <button
+          class="btn"
+          (click)="applyFilter(); view_col.style.display = 'none'"
+          *ngIf="filterOptions.length != 0"
+        >
+          Apply
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

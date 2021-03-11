@@ -1,0 +1,47 @@
+select {
+  border: 0;
+  font-size: 12px;
+  padding: 0;
+  text-align-last: end;
+}
+
+td {
+  padding: 0.15rem;
+  vertical-align: inherit;
+}
+
+.btn-icon {
+  font-size: 20px;
+  vertical-align: bottom;
+  transform: rotateZ(90deg);
+}
+
+.dropdown-menu {
+  width: 600px;
+  background-clip: initial;
+}
+
+.close-icon {
+  font-size: 16px;
+  vertical-align: sub;
+}
+
+.f-16 {
+  font-size: 16px;
+}
+
+.f-14 {
+  font-size: 14px;
+}
+
+.f-12 {
+  font-size: 12px;
+}
+
+.v-b {
+  vertical-align: text-bottom;
+}
+
+label {
+  padding: 0.15rem;
+}

@@ -1,0 +1,9 @@
+.table td,
+th {
+  padding: 0.5 1rem;
+  white-space: nowrap;
+}
+
+.table {
+  font-size: 14px;
+}

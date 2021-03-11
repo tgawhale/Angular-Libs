@@ -39,7 +39,7 @@ export class PaginateComponent implements OnInit {
     this.emit.emit(this.paginate);
   }
 
-  changeEntries(value: number) {
+  changeEntries(value: string) {
     this.paginate.showEntries = Number(value);
     this.paginate.totalPages = Math.ceil(
       this.paginate.totalItems / this.paginate.showEntries

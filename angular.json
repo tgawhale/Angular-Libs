@@ -258,9 +258,7 @@
               "projects/data-tables/tsconfig.lib.json",
               "projects/data-tables/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }

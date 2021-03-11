@@ -1,0 +1,117 @@
+<div
+  class="dropdown"
+  (click)="view_col.style.display = 'block'"
+  (dblclick)="view_col.style.display = 'none'"
+>
+  <button class="btn btn-light mr-2 f-14">
+    <span class="material-icons btn-icon">sync_alt</span>
+    Sort
+  </button>
+  <div class="dropdown-menu box-sh1 bg-white" #view_col>
+    <div class="card-body">
+      <table class="table table-borderless mb-0">
+        <tbody>
+          <tr *ngFor="let a of appliedSorts">
+            <td>
+              <span class="material-icons close-icon">close</span>
+            </td>
+            <td class="text-center">
+              <span class="f-12">{{
+                a.order == 0 ? "Sort by" : "then by"
+              }}</span>
+            </td>
+            <td>
+              <select class="form-control" [(ngModel)]="a.key" name="key">
+                <option selected *ngFor="let k of keys" [value]="k">
+                  {{ k }}
+                </option>
+              </select>
+            </td>
+            <td>
+              <span style="font-size: 12px">from</span>
+            </td>
+            <td *ngIf="a.isNumber">
+              <div class="btn-group w-100 rounded bg-light">
+                <button
+                  class="btn m-2 rounded f-12 font-weight-bold"
+                  [ngClass]="{ 'btn-secondary': a.isAsc }"
+                  (click)="a.isAsc = true"
+                >
+                  1
+                  <span class="material-icons ml-2 mr-2 f-16 v-b">east</span>
+                  9
+                </button>
+                <button
+                  class="btn m-2 rounded f-12 font-weight-bold"
+                  [ngClass]="{ 'btn-secondary': !a.isAsc }"
+                  (click)="a.isAsc = false"
+                >
+                  9
+                  <span class="material-icons ml-2 mr-2 f-16 v-b">east</span>
+                  1
+                </button>
+              </div>
+            </td>
+            <td *ngIf="!a.isNumber">
+              <div class="btn-group w-100 rounded bg-light">
+                <button
+                  class="btn m-2 rounded f-12 font-weight-bold"
+                  [ngClass]="{ 'btn-secondary': a.isAsc }"
+                  (click)="a.isAsc = true"
+                >
+                  A
+                  <span class="material-icons ml-2 mr-2 f-16 v-b">east</span>
+                  Z
+                </button>
+                <button
+                  class="btn m-2 rounded f-12 font-weight-bold"
+                  [ngClass]="{ 'btn-secondary': !a.isAsc }"
+                  (click)="a.isAsc = false"
+                >
+                  Z
+                  <span class="material-icons ml-2 mr-2 f-16 v-b">east</span>
+                  A
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--------------------------------------->
+
+    <a class="dropdown-item bg-white">
+      <div class="d-flex">
+        <select
+          class="form-control col-4"
+          style="font-weight: bold"
+          #s
+          (change)="setnewSort(s.value)"
+        >
+          <option selected disabled style="font-weight: bold">
+            Pick another field to sort by
+          </option>
+          <option *ngFor="let k of keys" [value]="k">
+            {{ k }}
+          </option>
+        </select>
+        <div class="btn-group ml-auto">
+          <button
+            class="btn rounded mr-2 text-dark"
+            style="font-size: 12px; padding: 0.25rem 0.5rem"
+            (click)="view_col.style.display = 'none'"
+          >
+            Cancel
+          </button>
+          <button
+            class="btn btn-outline-primary rounded border-0"
+            style="font-size: 12px; padding: 0.25rem 0.5rem"
+            (click)="applySort()"
+          >
+            Apply
+          </button>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

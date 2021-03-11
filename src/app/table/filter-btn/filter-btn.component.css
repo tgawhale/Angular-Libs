@@ -1,0 +1,22 @@
+.v-b {
+  vertical-align: bottom;
+}
+
+.c-p {
+  cursor: pointer;
+}
+.table td,
+.table th {
+  vertical-align: initial !important;
+}
+
+.action-btn {
+  padding: 0 1rem;
+}
+/*******************************/
+
+#dropdown-menu {
+  min-width: 600px;
+  background-clip: initial;
+  background-color: white;
+}
