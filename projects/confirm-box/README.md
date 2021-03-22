@@ -56,7 +56,7 @@ import { ConfirmBoxModule } from 'confirm-box';
 <confirm-box></confirm-box>
 ```
 
-## 3. `app.component.html`
+## 3. `app.component.cs`
 
 ```
 import { ConfirmBoxService } from 'confirm-box';
