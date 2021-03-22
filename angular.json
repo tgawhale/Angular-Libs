@@ -20,10 +20,7 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": [
-              "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
-            ],
+            "styles": ["src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -259,6 +256,46 @@
               "projects/data-tables/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "ngx-table-operations": {
+      "projectType": "library",
+      "root": "projects/ngx-table-operations",
+      "sourceRoot": "projects/ngx-table-operations/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/ngx-table-operations/tsconfig.lib.json",
+            "project": "projects/ngx-table-operations/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-table-operations/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-table-operations/src/test.ts",
+            "tsConfig": "projects/ngx-table-operations/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-table-operations/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-table-operations/tsconfig.lib.json",
+              "projects/ngx-table-operations/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }

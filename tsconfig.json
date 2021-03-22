@@ -11,13 +11,31 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "es2020",
-
-    "lib": ["es2018", "dom"],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
     "paths": {
-      "tgawhale": ["dist/tgawhale/tgawhale", "dist/tgawhale"],
-      "confirm-box": ["dist/confirm-box/confirm-box", "dist/confirm-box"],
-      "login-form": ["dist/login-form/login-form", "dist/login-form"],
-      "data-tables": ["dist/data-tables/data-tables", "dist/data-tables"]
+      "tgawhale": [
+        "dist/tgawhale/tgawhale",
+        "dist/tgawhale"
+      ],
+      "confirm-box": [
+        "dist/confirm-box/confirm-box",
+        "dist/confirm-box"
+      ],
+      "login-form": [
+        "dist/login-form/login-form",
+        "dist/login-form"
+      ],
+      "data-tables": [
+        "dist/data-tables/data-tables",
+        "dist/data-tables"
+      ],
+      "ngx-table-operations": [
+        "dist/ngx-table-operations/ngx-table-operations",
+        "dist/ngx-table-operations"
+      ]
     }
   },
   "angularCompilerOptions": {

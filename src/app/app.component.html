@@ -1,45 +1,7 @@
-<div class="container-fluid mt-4 mb-4">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-12 mt-4">
-      <!-- <data-table
-        [data]="data"
-        (response)="recordResponse($event)"
-      ></data-table> -->
-
-      <!-- <app-code-test></app-code-test> -->
-      <!-- <app-task-tracker></app-task-tracker> -->
-
-      <!-- <app-sort-btn [data]="data"></app-sort-btn> -->
-      <app-filter-btn
-        [data]="data"
-        [numberKeys]="['empId', 'fte']"
-        (filtered)="data = $event"
-      >
-        <span class="material-icons" style="vertical-align: bottom"
-          >filter_alt</span
-        >
-        Filter
-      </app-filter-btn>
-      <div class="table-responsive bg-white">
-        <table class="table table-bordered m-0">
-          <thead style="background: #f5f5f5">
-            <tr>
-              <th *ngFor="let k of keys" style="padding: 0.5rem !important">
-                <div class="d-flex">
-                  <span> {{ k }}</span>
-                </div>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let d of data; let i = index">
-              <td *ngFor="let k of keys">
-                {{ d[k] }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="col-12">
+      <app-table></app-table>
     </div>
   </div>
 </div>

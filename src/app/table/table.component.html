@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="card-body">
+    <h4 class="font-weight-bold">
+      XYZ Employee List <span style="color: #007bff">[{{ data.length }}]</span>
+    </h4>
+  </div>
+
+  <div class="card-body p-2" style="background: #f8f9fa">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex">
+          <ngx-filter-btn
+            [data]="data"
+            [numberKeys]="['empId', 'fte']"
+            (filtered)="data = $event"
+          >
+            <span class="material-icons" style="vertical-align: bottom"
+              >filter_alt</span
+            >
+            Filter</ngx-filter-btn
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead style="background: #f5f5f5">
+        <tr>
+          <th *ngFor="let k of keys">{{ k }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of data; let i = index">
+          <td *ngFor="let k of keys">
+            {{ d[k] }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

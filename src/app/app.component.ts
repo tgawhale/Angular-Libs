@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SampleData, DATA } from './model';
+import { SampleData, DATA } from './sample-data';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,8 +7,7 @@ import { SampleData, DATA } from './model';
 })
 export class AppComponent {
   title = 'my-libs';
-  data: SampleData[] = DATA;
-  keys: string[] = Object.keys(DATA[0]);
+
   constructor() {}
 
   recordResponse(event) {

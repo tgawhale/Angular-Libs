@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SortOption } from '../sort.model';
+import { SortOption } from '../sort-btn/sort.model';
 
 @Component({
   selector: 'app-sort-btn',
