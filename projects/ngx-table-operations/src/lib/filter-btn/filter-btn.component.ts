@@ -39,8 +39,10 @@ export class FilterBtnComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.dataCopy = [...this.data];
-    this.prepareData();
+    if (this.data.length != 0) {
+      this.dataCopy = [...this.data];
+      this.prepareData();
+    }
   }
 
   prepareData() {
@@ -135,29 +137,33 @@ export class FilterBtnComponent implements OnInit {
     switch (fo.conditon) {
       case 'contains':
         this.data = this.data.filter((x) =>
-          x[fo.key].toLowerCase().includes(fo.value)
+          x[fo.key].toLowerCase().includes(fo.value.toLowerCase())
         );
         break;
       case 'does not contain':
         this.data = this.data.filter(
-          (x) => !x[fo.key].toLowerCase().includes(fo.value)
+          (x) => !x[fo.key].toLowerCase().includes(fo.value.toLowerCase())
         );
         break;
       case 'starts with':
         this.data = this.data.filter((x) =>
-          x[fo.key].toLowerCase().startsWith(fo.value)
+          x[fo.key].toLowerCase().startsWith(fo.value.toLowerCase())
         );
         break;
       case 'ends with':
         this.data = this.data.filter((x) =>
-          x[fo.key].toLowerCase().endsWith(fo.value)
+          x[fo.key].toLowerCase().endsWith(fo.value.toLowerCase())
         );
         break;
       case 'is':
-        this.data = this.data.filter((x) => x[fo.key] == fo.value);
+        this.data = this.data.filter(
+          (x) => x[fo.key].toLowerCase() == fo.value.toLowerCase()
+        );
         break;
       case 'is not':
-        this.data = this.data.filter((x) => x[fo.key] != fo.value);
+        this.data = this.data.filter(
+          (x) => x[fo.key].toLowerCase() != fo.value.toLowerCase()
+        );
         break;
       case 'is empty':
         this.data = this.data.filter((x) => x[fo.key] == null);

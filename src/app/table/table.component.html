@@ -11,7 +11,7 @@
         <div class="d-flex">
           <ngx-filter-btn
             [data]="data"
-            [numberKeys]="['empId', 'fte']"
+            [numberKeys]="['empId', 'salary', 'fte']"
             (filtered)="data = $event"
           >
             <span class="material-icons" style="vertical-align: bottom"
@@ -34,7 +34,8 @@
       <tbody>
         <tr *ngFor="let d of data; let i = index">
           <td *ngFor="let k of keys">
-            {{ d[k] }}
+            <span *ngIf="k == 'salary'">{{ d[k] | currency: "USD" }}</span>
+            <span *ngIf="k != 'salary'">{{ d[k] }}</span>
           </td>
         </tr>
       </tbody>

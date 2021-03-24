@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
-import { NgxTableOperationsComponent } from './ngx-table-operations.component';
 
 @NgModule({
-  declarations: [NgxTableOperationsComponent],
+  declarations: [],
   imports: [],
-  exports: [NgxTableOperationsComponent],
+  exports: [],
 })
 export class NgxTableOperationsModule {}

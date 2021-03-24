@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "public": "dist/my-libs",
+    "site": "ngx123",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
