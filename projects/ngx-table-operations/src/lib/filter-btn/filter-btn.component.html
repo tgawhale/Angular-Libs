@@ -3,7 +3,7 @@
     <ng-content></ng-content>
   </button>
   <div class="dropdown-menu" #view_col>
-    <div *ngIf="data.length != 0">
+    <div *ngIf="data.length != 0 || filterOptions.length != 0">
       <div class="card-body">
         <table class="table table-borderless mb-0">
           <tbody>
@@ -38,30 +38,12 @@
                 </select>
               </td>
               <td>
-                <select
-                  class="form-control"
-                  *ngIf="fo.dataType == 'number'"
-                  [(ngModel)]="fo.conditon"
-                >
+                <select class="form-control" [(ngModel)]="fo.conditon">
                   <option
-                    selected
-                    *ngFor="let n of numberCondition"
+                    *ngFor="let n of conditionsList[fo.dataType]"
                     [value]="n"
                   >
                     {{ n }}
-                  </option>
-                </select>
-                <select
-                  class="form-control"
-                  *ngIf="fo.dataType == 'string'"
-                  [(ngModel)]="fo.conditon"
-                >
-                  <option
-                    selected
-                    *ngFor="let s of stringCondition"
-                    [value]="s"
-                  >
-                    {{ s }}
                   </option>
                 </select>
               </td>
@@ -95,7 +77,7 @@
       </div>
     </div>
     <div
-      *ngIf="data.length == 0"
+      *ngIf="data.length == 0 && filterOptions.length == 0"
       style="padding: 0.25rem; text-align: center; width: 100%"
     >
       <p>No Data Passed. Use [data] attritube to pass your data of array.</p>

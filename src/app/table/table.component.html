@@ -12,6 +12,8 @@
           <ngx-filter-btn
             [data]="data"
             [numberKeys]="['empId', 'salary', 'fte']"
+            [booleanKeys]="['isNewJoiner']"
+            [dateKeys]="['dateOfJoining']"
             (filtered)="data = $event"
           >
             <span class="material-icons" style="vertical-align: bottom"

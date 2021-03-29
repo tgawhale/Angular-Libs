@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FilterOption, KeyModel } from './filter-btn.model';
+import { ConditionsInArray, FilterOption, KeyModel } from './filter-btn.model';
 
 @Component({
   selector: 'ngx-filter-btn',
@@ -7,34 +7,18 @@ import { FilterOption, KeyModel } from './filter-btn.model';
   styleUrls: ['./filter-btn.component.css'],
 })
 export class FilterBtnComponent implements OnInit {
-  @Input() data: any[] = [];
-  @Input() numberKeys: string[] = [];
-  @Output() filtered = new EventEmitter();
+  @Input() data: any[] = []; //main data of array
+  @Input() numberKeys: string[] = []; // columns whos dataTypes are number
+  @Input() booleanKeys: string[] = []; // columns whos dataTypes are boolean
+  @Input() dateKeys: string[] = []; // columns whos dataTypes are Date
 
-  dataCopy: any[] = [];
-  keys: KeyModel[] = [];
-  filterOptions: FilterOption[] = [];
-  stringCondition: string[] = [
-    'contains',
-    'does not contain',
-    'starts with',
-    'ends with',
-    'is',
-    'is not',
-    'is empty',
-    'is not empty',
-  ];
+  @Output() filtered = new EventEmitter(); //Just passes the filtered data
 
-  numberCondition: string[] = [
-    '=',
-    '!=',
-    '>',
-    '<',
-    '>=',
-    '<=',
-    'is empty',
-    'is not empty',
-  ];
+  dataCopy: any[] = []; // Store a copy of original data
+  keys: KeyModel[] = []; // Store columns names of Data array
+  filterOptions: FilterOption[] = []; // Model to create filters
+
+  conditionsList: ConditionsInArray = new ConditionsInArray();
 
   constructor() {}
 
@@ -55,11 +39,28 @@ export class FilterBtnComponent implements OnInit {
     });
 
     getUniqueKeys.forEach((x) => {
-      //check if elements is a number key so
-      //that datatype of that key can be used as number;
+      //Find keys whos datatype are number
       let nk = this.numberKeys.find((n) => n == x);
-      if (nk !== undefined) this.keys.push({ key: x, isNumber: true });
-      else this.keys.push({ key: x, isNumber: false });
+
+      //Find keys whos datatype are boolean
+      let bk = this.booleanKeys.find((n) => n == x);
+
+      //Find keys whos datatype are Date
+      let dk = this.dateKeys.find((n) => n == x);
+
+      if (nk !== undefined) {
+        this.keys.push({ key: x, dataType: 'number' });
+        return;
+      } else if (bk !== undefined) {
+        this.keys.push({ key: x, dataType: 'boolean' });
+        return;
+      } else if (dk !== undefined) {
+        this.keys.push({ key: x, dataType: 'date' });
+        return;
+      } else {
+        this.keys.push({ key: x, dataType: 'string' });
+        return;
+      }
     });
   }
 
@@ -72,26 +73,34 @@ export class FilterBtnComponent implements OnInit {
     //set key
     fo.key = this.keys[0].key;
     //set datatype
-    fo.dataType = this.keys[0].isNumber ? 'number' : 'string';
+    fo.dataType = this.keys[0].dataType;
     //set conditions
-    fo.conditon = this.keys[0].isNumber
-      ? this.numberCondition[0]
-      : this.stringCondition[0];
+    fo.conditon = this.getConditionList(fo.dataType)[0];
     //set value
     fo.value = '';
     //push to array
     this.filterOptions.push(fo);
   }
 
+  getConditionList(condition: string) {
+    switch (condition) {
+      case 'number':
+        return this.conditionsList.number;
+      case 'boolean':
+        return this.conditionsList.boolean;
+      case 'date':
+        return this.conditionsList.date;
+      default:
+        return this.conditionsList.string;
+    }
+  }
+
   changeDataType(foIndex: number, foKey: string) {
     let findKey = this.keys.find((x) => x.key == foKey);
-    if (findKey.isNumber) {
-      this.filterOptions[foIndex].dataType = 'number';
-      this.filterOptions[foIndex].conditon = this.numberCondition[0];
-    } else {
-      this.filterOptions[foIndex].dataType = 'string';
-      this.filterOptions[foIndex].conditon = this.stringCondition[0];
-    }
+    this.filterOptions[foIndex].dataType = findKey.dataType;
+    this.filterOptions[foIndex].conditon = this.getConditionList(
+      findKey.dataType
+    )[0];
   }
 
   applyFilter() {
@@ -99,29 +108,32 @@ export class FilterBtnComponent implements OnInit {
     this.filterOptions.forEach((x) => {
       if (x.clause == 'or') this.data = [...this.dataCopy];
       if (x.dataType == 'number') this.numberFilter(x);
+      else if (x.dataType == 'boolean') this.booleanFilter(x);
+      else if (x.dataType == 'date') this.dateFilter(x);
       else this.stringFilter(x);
     });
   }
 
   numberFilter(fo: FilterOption) {
+    let value = Number(fo.value);
     switch (fo.conditon) {
       case '=':
-        this.data = this.data.filter((x) => x[fo.key] == Number(fo.value));
+        this.data = this.data.filter((x) => x[fo.key] == value);
         break;
       case '!=':
-        this.data = this.data.filter((x) => x[fo.key] != Number(fo.value));
+        this.data = this.data.filter((x) => x[fo.key] != value);
         break;
       case '>':
-        this.data = this.data.filter((x) => x[fo.key] > Number(fo.value));
+        this.data = this.data.filter((x) => x[fo.key] > value);
         break;
       case '<':
-        this.data = this.data.filter((x) => x[fo.key] < Number(fo.value));
+        this.data = this.data.filter((x) => x[fo.key] < value);
         break;
       case '>=':
-        this.data = this.data.filter((x) => x[fo.key] >= Number(fo.value));
+        this.data = this.data.filter((x) => x[fo.key] >= value);
         break;
       case '<=':
-        this.data = this.data.filter((x) => x[fo.key] <= Number(fo.value));
+        this.data = this.data.filter((x) => x[fo.key] <= value);
         break;
       case 'is empty':
         this.data = this.data.filter((x) => x[fo.key] == null);
@@ -134,35 +146,94 @@ export class FilterBtnComponent implements OnInit {
   }
 
   stringFilter(fo: FilterOption) {
+    let value = fo.value.toLowerCase();
     switch (fo.conditon) {
       case 'contains':
         this.data = this.data.filter((x) =>
-          x[fo.key].toLowerCase().includes(fo.value.toLowerCase())
+          x[fo.key].toLowerCase().includes(value)
         );
         break;
       case 'does not contain':
         this.data = this.data.filter(
-          (x) => !x[fo.key].toLowerCase().includes(fo.value.toLowerCase())
+          (x) => !x[fo.key].toLowerCase().includes(value)
         );
         break;
       case 'starts with':
         this.data = this.data.filter((x) =>
-          x[fo.key].toLowerCase().startsWith(fo.value.toLowerCase())
+          x[fo.key].toLowerCase().startsWith(value)
         );
         break;
       case 'ends with':
         this.data = this.data.filter((x) =>
-          x[fo.key].toLowerCase().endsWith(fo.value.toLowerCase())
+          x[fo.key].toLowerCase().endsWith(value)
         );
         break;
       case 'is':
-        this.data = this.data.filter(
-          (x) => x[fo.key].toLowerCase() == fo.value.toLowerCase()
-        );
+        this.data = this.data.filter((x) => x[fo.key].toLowerCase() == value);
         break;
       case 'is not':
+        this.data = this.data.filter((x) => x[fo.key].toLowerCase() != value);
+        break;
+      case 'is empty':
+        this.data = this.data.filter((x) => x[fo.key] == null);
+        break;
+      case 'is not empty':
+        this.data = this.data.filter((x) => x[fo.key] != null);
+        break;
+    }
+    this.filtered.emit(this.data);
+  }
+
+  booleanFilter(fo: FilterOption) {
+    switch (fo.conditon) {
+      case 'true':
+        this.data = this.data.filter((x) => x[fo.key] == true);
+        break;
+      case 'false':
+        this.data = this.data.filter((x) => x[fo.key] == false);
+        break;
+      case 'is empty':
+        this.data = this.data.filter((x) => x[fo.key] == null);
+        break;
+      case 'is not empty':
+        this.data = this.data.filter((x) => x[fo.key] != null);
+        break;
+    }
+
+    this.filtered.emit(this.data);
+  }
+
+  dateFilter(fo: FilterOption) {
+    let value = new Date(fo.value).getTime();
+    switch (fo.conditon) {
+      case '=':
         this.data = this.data.filter(
-          (x) => x[fo.key].toLowerCase() != fo.value.toLowerCase()
+          (x) => new Date(x[fo.key]).getTime() == value
+        );
+        break;
+      case '!=':
+        this.data = this.data.filter(
+          (x) => new Date(x[fo.key]).getTime() != value
+        );
+        break;
+      case '>':
+        this.data = this.data.filter(
+          (x) => new Date(x[fo.key]).getTime() > value
+        );
+        break;
+      case '<':
+        this.data = this.data.filter(
+          (x) => new Date(x[fo.key]).getTime() < value
+        );
+        break;
+      case '>=':
+        this.data = this.data.filter(
+          (x) => new Date(x[fo.key]).getTime() >= value
+        );
+        break;
+      case '<=':
+        this.data = this.data.filter(
+          (x) => new Date(x[fo.key]).getTime() <= value
         );
         break;
       case 'is empty':
