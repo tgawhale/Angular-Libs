@@ -28,6 +28,10 @@
         "dist/login-form/login-form",
         "dist/login-form"
       ],
+      "ngx-filter-btn": [
+        "dist/ngx-filter-btn/ngx-filter-btn",
+        "dist/ngx-filter-btn"
+      ],
       "data-tables": [
         "dist/data-tables/data-tables",
         "dist/data-tables"

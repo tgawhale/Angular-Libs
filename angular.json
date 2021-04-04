@@ -108,44 +108,6 @@
         }
       }
     },
-    "tgawhale": {
-      "projectType": "library",
-      "root": "projects/tgawhale",
-      "sourceRoot": "projects/tgawhale/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/tgawhale/tsconfig.lib.json",
-            "project": "projects/tgawhale/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/tgawhale/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/tgawhale/src/test.ts",
-            "tsConfig": "projects/tgawhale/tsconfig.spec.json",
-            "karmaConfig": "projects/tgawhale/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/tgawhale/tsconfig.lib.json",
-              "projects/tgawhale/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**"]
-          }
-        }
-      }
-    },
     "confirm-box": {
       "projectType": "library",
       "root": "projects/confirm-box",
@@ -178,44 +140,6 @@
             "tsConfig": [
               "projects/confirm-box/tsconfig.lib.json",
               "projects/confirm-box/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**"]
-          }
-        }
-      }
-    },
-    "login-form": {
-      "projectType": "library",
-      "root": "projects/login-form",
-      "sourceRoot": "projects/login-form/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/login-form/tsconfig.lib.json",
-            "project": "projects/login-form/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/login-form/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/login-form/src/test.ts",
-            "tsConfig": "projects/login-form/tsconfig.spec.json",
-            "karmaConfig": "projects/login-form/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/login-form/tsconfig.lib.json",
-              "projects/login-form/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**"]
           }
@@ -260,42 +184,40 @@
         }
       }
     },
-    "ngx-table-operations": {
+    "ngx-filter-btn": {
       "projectType": "library",
-      "root": "projects/ngx-table-operations",
-      "sourceRoot": "projects/ngx-table-operations/src",
+      "root": "projects/ngx-filter-btn",
+      "sourceRoot": "projects/ngx-filter-btn/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/ngx-table-operations/tsconfig.lib.json",
-            "project": "projects/ngx-table-operations/ng-package.json"
+            "tsConfig": "projects/ngx-filter-btn/tsconfig.lib.json",
+            "project": "projects/ngx-filter-btn/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ngx-table-operations/tsconfig.lib.prod.json"
+              "tsConfig": "projects/ngx-filter-btn/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ngx-table-operations/src/test.ts",
-            "tsConfig": "projects/ngx-table-operations/tsconfig.spec.json",
-            "karmaConfig": "projects/ngx-table-operations/karma.conf.js"
+            "main": "projects/ngx-filter-btn/src/test.ts",
+            "tsConfig": "projects/ngx-filter-btn/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-filter-btn/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/ngx-table-operations/tsconfig.lib.json",
-              "projects/ngx-table-operations/tsconfig.spec.json"
+              "projects/ngx-filter-btn/tsconfig.lib.json",
+              "projects/ngx-filter-btn/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }

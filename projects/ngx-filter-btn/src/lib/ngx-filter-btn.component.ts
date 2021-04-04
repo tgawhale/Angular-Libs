@@ -1,12 +1,16 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ConditionsInArray, FilterOption, KeyModel } from './filter-btn.model';
+import {
+  ConditionsInArray,
+  FilterOption,
+  KeyModel,
+} from './ngx-filter-btn.model';
 
 @Component({
   selector: 'ngx-filter-btn',
-  templateUrl: './filter-btn.component.html',
-  styleUrls: ['./filter-btn.component.css'],
+  templateUrl: './ngx-filter-btn.component.html',
+  styleUrls: ['./ngx-filter-btn.component.css'],
 })
-export class FilterBtnComponent implements OnInit {
+export class NgxFilterBtnComponent implements OnInit {
   @Input() data: any[] = []; //main data of array
   @Input() numberKeys: string[] = []; // columns whos dataTypes are number
   @Input() booleanKeys: string[] = []; // columns whos dataTypes are boolean
