@@ -154,29 +154,33 @@ export class NgxFilterBtnComponent implements OnInit {
     switch (fo.conditon) {
       case 'contains':
         this.data = this.data.filter((x) =>
-          x[fo.key].toLowerCase().includes(value)
+          `${x[fo.key]}`.toLowerCase().includes(value)
         );
         break;
       case 'does not contain':
         this.data = this.data.filter(
-          (x) => !x[fo.key].toLowerCase().includes(value)
+          (x) => !`${x[fo.key]}`.toLowerCase().includes(value)
         );
         break;
       case 'starts with':
         this.data = this.data.filter((x) =>
-          x[fo.key].toLowerCase().startsWith(value)
+          `${x[fo.key]}`.toLowerCase().startsWith(value)
         );
         break;
       case 'ends with':
         this.data = this.data.filter((x) =>
-          x[fo.key].toLowerCase().endsWith(value)
+          `${x[fo.key]}`.toLowerCase().endsWith(value)
         );
         break;
       case 'is':
-        this.data = this.data.filter((x) => x[fo.key].toLowerCase() == value);
+        this.data = this.data.filter(
+          (x) => `${x[fo.key]}`.toLowerCase() == value
+        );
         break;
       case 'is not':
-        this.data = this.data.filter((x) => x[fo.key].toLowerCase() != value);
+        this.data = this.data.filter(
+          (x) => `${x[fo.key]}`.toLowerCase() != value
+        );
         break;
       case 'is empty':
         this.data = this.data.filter((x) => x[fo.key] == null);

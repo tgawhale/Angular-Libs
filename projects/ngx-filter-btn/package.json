@@ -1,11 +1,23 @@
 {
   "name": "ngx-filter-btn",
   "version": "0.0.1",
+  "description": "Simple to implement filter button that filters your data.",
+  "author": "Tushar Gawhale",
+  "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^11.2.8",
     "@angular/core": "^11.2.8"
   },
   "dependencies": {
     "tslib": "^2.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tgawhale/Angular-Libs/tree/main/projects/ngx-filter-btn"
+  },
+  "homepage": "https://ngx123.web.app/",
+  "keywords": [
+    "angular",
+    "ngx"
+  ]
 }
