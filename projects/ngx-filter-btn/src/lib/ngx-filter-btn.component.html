@@ -47,7 +47,7 @@
                   </option>
                 </select>
               </td>
-              <td>
+              <td *ngIf="fo.dataType !== 'boolean'">
                 <input
                   class="form-control"
                   [(ngModel)]="fo.value"

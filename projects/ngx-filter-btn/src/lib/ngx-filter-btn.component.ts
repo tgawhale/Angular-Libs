@@ -19,10 +19,11 @@ export class NgxFilterBtnComponent implements OnInit {
   @Output() filtered = new EventEmitter(); //Just passes the filtered data
 
   dataCopy: any[] = []; // Store a copy of original data
+  orDataCopy: any[] = []; //Store a copy when used with OR clause
   keys: KeyModel[] = []; // Store columns names of Data array
   filterOptions: FilterOption[] = []; // Model to create filters
 
-  conditionsList: ConditionsInArray = new ConditionsInArray();
+  conditionsList: ConditionsInArray = new ConditionsInArray(); //Contains lists of all conditions
 
   constructor() {}
 
@@ -99,6 +100,7 @@ export class NgxFilterBtnComponent implements OnInit {
     }
   }
 
+  //Triggers when there is change in select tag of keys
   changeDataType(foIndex: number, foKey: string) {
     let findKey = this.keys.find((x) => x.key == foKey);
     this.filterOptions[foIndex].dataType = findKey.dataType;
@@ -110,7 +112,11 @@ export class NgxFilterBtnComponent implements OnInit {
   applyFilter() {
     this.data = [...this.dataCopy];
     this.filterOptions.forEach((x) => {
-      if (x.clause == 'or') this.data = [...this.dataCopy];
+      if (x.clause == 'or') {
+        this.orDataCopy = [];
+        this.orDataCopy = [...this.data]; //Store previous filtered data
+        this.data = [...this.dataCopy];
+      }
       if (x.dataType == 'number') this.numberFilter(x);
       else if (x.dataType == 'boolean') this.booleanFilter(x);
       else if (x.dataType == 'date') this.dateFilter(x);
@@ -146,6 +152,7 @@ export class NgxFilterBtnComponent implements OnInit {
         this.data = this.data.filter((x) => x[fo.key] != null);
         break;
     }
+    if (fo.clause == 'or') this.data = this.data.concat(this.orDataCopy);
     this.filtered.emit(this.data);
   }
 
@@ -189,6 +196,7 @@ export class NgxFilterBtnComponent implements OnInit {
         this.data = this.data.filter((x) => x[fo.key] != null);
         break;
     }
+    if (fo.clause == 'or') this.data = this.data.concat(this.orDataCopy);
     this.filtered.emit(this.data);
   }
 
@@ -207,7 +215,7 @@ export class NgxFilterBtnComponent implements OnInit {
         this.data = this.data.filter((x) => x[fo.key] != null);
         break;
     }
-
+    if (fo.clause == 'or') this.data = this.data.concat(this.orDataCopy);
     this.filtered.emit(this.data);
   }
 
@@ -251,6 +259,7 @@ export class NgxFilterBtnComponent implements OnInit {
         this.data = this.data.filter((x) => x[fo.key] != null);
         break;
     }
+    if (fo.clause == 'or') this.data = this.data.concat(this.orDataCopy);
     this.filtered.emit(this.data);
   }
 

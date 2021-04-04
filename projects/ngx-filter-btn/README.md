@@ -1,24 +1,136 @@
-# NgxFilterBtn
+# Ngx Filter Btn
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.8.
+Simple to implement filter button that filters your data.
 
-## Code scaffolding
+[Demo Link](https://ngx123.web.app/)
 
-Run `ng generate component component-name --project ngx-filter-btn` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-filter-btn`.
-> Note: Don't forget to add `--project ngx-filter-btn` or else it will be added to the default project in your `angular.json` file. 
+![demo image](https://github.com/tgawhale/Angular-Libs/blob/main/src/assets/ngx-filter-btn.png?raw=true)
 
-## Build
+## Index
 
-Run `ng build ngx-filter-btn` to build the project. The build artifacts will be stored in the `dist/` directory.
+- [Installation Steps](#installation-steps)
+- [Installation Example](#installation-example)
+- [Parameters Available](#parameters-available)
+- [Available Conditions](#available-conditions)
+- [Styling the component](#styling-the-component)
 
-## Publishing
+## Installation Steps
 
-After building your library with `ng build ngx-filter-btn`, go to the dist folder `cd dist/ngx-filter-btn` and run `npm publish`.
+1. Install by running `npm install ngx-table-operations`
+2. Add `import { NgxFilterBtnModule } from 'ngx-filter-btn'` in your module class.
+3. Add `NgxFilterBtnModule` in your module class.
+4. Add `<ngx-filter-btn [data]="yourData" (filtered)="yourData = $event">Your button name</ngx-filter-btn>` in your component html.
 
-## Running unit tests
+## Installation Example
 
-Run `ng test ngx-filter-btn` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Install by running `npm install ngx-table-operations`
+2. In `app.module.ts` file.
 
-## Further help
+   ```
+   import { NgxFilterBtnModule } from 'ngx-filter-btn';
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+   @NgModule({
+   ....
+   imports: [NgxFilterBtnModule, ....],
+   ....
+   ....
+   })
+   ```
+
+3. In `app.component.html` file.
+   ```
+   <ngx-filter-btn
+           [data]="userList"
+           [numberKeys]="['empId', 'salary', 'fte']"
+           [booleanKeys]="['isNewJoiner']"
+           [dateKeys]="['dateOfJoining']"
+           (filtered)="userList = $event"
+         >
+           Filter
+   </ngx-filter-btn>
+   ```
+4. Some sample data in `app.component.ts` file.
+
+   ```
+   export class AppComponent {
+
+   userList: SampleData[] = [];
+   constructor() {
+       this.userList = [
+       {
+           empId: 7151,
+           name: 'Jarret Chesson',
+           email: 'jchessona8@illinois.edu',
+           gender: 'M',
+           assetType: 'Desktop',
+           assetDetail: 'VXYJ59531',
+           dateOfJoining: '11-04-2017',
+           salary: 68093,
+           isNewJoiner: true,
+           grade: 'A3',
+           location: 'Kolkata',
+           skills: 'Java',
+           billablityStatus: 'DEPLOYABLE_BENCH',
+           accountName: 'Hudson LLC',
+           projectName: 'Span',
+           fte: 75,
+         },
+         { ..... },
+         { ..... }
+
+       }
+   }
+   ```
+
+## Parameters Available
+
+| Type    | Name        | Description                                                                   | Data Type | Example                           |
+| ------- | ----------- | ----------------------------------------------------------------------------- | --------- | --------------------------------- |
+| @Input  | data        | Pass your actual data of array in it                                          | any[]     | [data]="userList"                 |
+| @Input  | numberKeys  | Pass keys who has data of type number so that number filters can be applied   | string[]  | [numberKeys]="['empId','salary']" |
+| @Input  | booleanKeys | Pass keys who has data of type boolean so that boolean filters can be applied | string[]  | [booleanKeys]="['isNewJoiner']"   |
+| @Input  | dateKeys    | Pass keys who has data of type Date so that Date filters can be applied       | string[]  | [dateKeys]="['dateOfJoining']"    |
+| @Output | filtered    | Returns the filtered array of your data in $event                             |           | (filtered)="userList = $event"    |
+
+## Available Conditions
+
+1. String Conditions
+   - `contains`
+   - `does not contain`
+   - `starts with`
+   - `ends with`
+   - `is`
+   - `is not`
+   - `is empty`
+   - `is not empty`
+2. Number & Date Conditions
+   - `=`
+   - `!=`
+   - `>`
+   - `<`
+   - `>=`
+   - `<=`
+   - `is empty`
+   - `is not empty`
+3. Boolean Conditions
+   - `true`
+   - `false`
+   - `is empty`
+   - `is not empty`
+
+## Styling the component
+
+- The css class names are same as bootstrap classes.
+- Customizing the css is simple.
+- You can find all the css classes I used [here](https://github.com/tgawhale/Angular-Libs/tree/main/projects/ngx-filter-btn/src/lib/ngx-filter-btn.component.css).
+- Use the same class name in `style.css` to override according to your css.
+
+> If you want to keep the css to component only, then use `:host ::ng-deep` before declaring the css class.
+
+Example :
+
+```
+:host ::ng-deep .dropdown-menu{
+        background-color: white
+    }
+```
